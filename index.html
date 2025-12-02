@@ -1,0 +1,271 @@
+<Baby Shower html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Shower: Alberto y Laura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #455a64;
+        }
+
+        /* --- FONDO ANIMADO --- */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+        .b1 { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .b2 { width: 20px; height: 20px; left: 20%; animation-duration: 5s; animation-delay: 1s; }
+        .b3 { width: 50px; height: 50px; left: 35%; animation-duration: 10s; animation-delay: 2s; }
+        .b4 { width: 80px; height: 80px; left: 50%; animation-duration: 12s; animation-delay: 0s; }
+        .b5 { width: 35px; height: 35px; left: 70%; animation-duration: 7s; animation-delay: 3s; }
+
+        @keyframes rise {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(50px); }
+            100% { bottom: 120%; transform: translateX(-50px); }
+        }
+
+        /* --- TARJETA PRINCIPAL --- */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 450px;
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 4px solid #fff;
+            animation: popIn 1s ease-out;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.8em;
+            color: #039be5;
+            margin: 0;
+            text-shadow: 2px 2px 0px #e1f5fe;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #78909c;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .parents {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #0277bd;
+            margin: 20px 0;
+            line-height: 1.5;
+            border-top: 2px dashed #b3e5fc;
+            border-bottom: 2px dashed #b3e5fc;
+            padding: 15px 0;
+        }
+
+        .info-box {
+            margin: 15px 0;
+            font-size: 1em;
+        }
+        .info-label {
+            font-weight: 700;
+            color: #0288d1;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* --- BOTONES --- */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-maps {
+            background: #ff7043; /* Naranja mapa */
+        }
+        
+        .btn-wa {
+            background: #25D366; /* Verde WhatsApp */
+        }
+
+        /* --- PANTALLA DE INICIO (Overlay) --- */
+        /* Necesario para que el navegador permita reproducir audio */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0288d1;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.5s;
+        }
+        
+        #overlay h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .open-btn {
+            background: white;
+            color: #0288d1;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+
+        /* Iconos */
+        .icon { margin-right: 10px; font-size: 1.2em; }
+
+    </style>
+</head>
+<body>
+
+    <div id="overlay" onclick="entrar()">
+        <h2>¡Tienes una invitación!</h2>
+        <div class="open-btn">💌 Abrir Invitación</div>
+        <p style="margin-top: 20px; font-size: 0.8em; opacity: 0.8;">(Toca para activar la música)</p>
+    </div>
+
+    <audio id="musica" loop>
+        <source src="https://open.spotify.com/track/5cxcpLaPjX0MkAHvPrYfPZ?si=af03d3780b314f94">
+    </audio>
+
+    <div class="bg-animation">
+        <div class="bubble b1"></div>
+        <div class="bubble b2"></div>
+        <div class="bubble b3"></div>
+        <div class="bubble b4"></div>
+        <div class="bubble b5"></div>
+    </div>
+
+    <div class="card">
+        <div style="font-size: 4em;">🧸💙</div>
+        <h1>Baby Shower</h1>
+        <div class="subtitle">¡Es un niño!</div>
+
+        <p>Con mucha alegría, te invitamos a celebrar la próxima llegada de nuestro bebé.</p>
+
+        <div class="parents">
+            Alberto Vélez Ramírez<br>
+            &<br>
+            Laura Fabiola Reyes Moreno
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">📅 ¿Cuándo?</span>
+            Domingo, 8 de Diciembre del 2025
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">⏰ Hora</span>
+            11:00 AM
+        </div>
+
+        <div class="info-box">
+            <span class="info-label">📍 ¿Dónde?</span>
+            Heriberto Frias 909, Col. del Valle Centro,<br>Benito Juarez, CDMX.
+        </div>
+
+        <div class="btn-container">
+            <a href="https://www.google.com/maps/search/?api=1&query=Heriberto+Frias+909,+Col.+del+Valle+Centro,+Benito+Juarez,+03100+Ciudad+de+M%C3%A9xico,+CDMX" target="_blank" class="btn btn-maps">
+                <span class="icon">📍</span> Ver Ubicación
+            </a>
+
+            <a href="https://wa.me/525537123514?text=%C2%A1Hola!%20Muchas%20felicidades%20Laura%20y%20Alberto.%20Confirmo%20mi%20asistencia%20al%20Baby%20Shower%20%F0%9F%91%B6%F0%9F%8C%9F" target="_blank" class="btn btn-wa">
+                <span class="icon">✅</span> Confirmar Asistencia
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function entrar() {
+            var overlay = document.getElementById('overlay');
+            var audio = document.getElementById('musica');
+
+            // Efecto desvanecer
+            overlay.style.opacity = '0';
+            
+            // Intentar reproducir música
+            audio.volume = 0.4; // Volumen suave
+            audio.play().catch(function(error) {
+                console.log("Audio autoplay prevented by browser policy.");
+            });
+
+            // Quitar el overlay después de la animación
+            setTimeout(function() {
+                overlay.style.display = 'none';
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>
